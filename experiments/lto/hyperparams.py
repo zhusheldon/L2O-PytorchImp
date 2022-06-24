@@ -135,7 +135,7 @@ agent = {
     'substeps': 1,
     'conditions': common['conditions'],
     'dt': 0.05,
-    'T': 40,
+    'T': 100,
     'sensor_dims': SENSOR_DIMS,
     'state_include': [CUR_LOC, PAST_OBJ_VAL_DELTAS, PAST_GRADS, CUR_GRAD, PAST_LOC_DELTAS],
     'obs_include': [PAST_OBJ_VAL_DELTAS, PAST_GRADS, CUR_GRAD, PAST_LOC_DELTAS],
@@ -203,10 +203,11 @@ algorithm['policy_opt'] = {
     'init_var': 0.01, 
     'batch_size': 25,
     'solver_type': 'adam',
-    'lr': 0.0001, 
+    'lr': 0.1, #orig:1e-4
     'lr_policy': 'fixed',
     'momentum': 0.9,
     'weight_decay': 0.005,
+    'mem_len': 15,
     'use_gpu': 1,
     'weights_file_prefix': EXP_DIR + 'policy',
     'network_params': {

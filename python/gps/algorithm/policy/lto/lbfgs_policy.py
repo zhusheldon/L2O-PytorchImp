@@ -4,14 +4,13 @@ from gps.algorithm.policy.policy import Policy
 from gps.proto.gps_pb2 import CUR_LOC
 
 class LBFGSPolicy(Policy):
-    def __init__(self, agent, learning_rate, mem_len, cond, noise_var = None):
+    def __init__(self, agent, learning_rate, mem_len, cond, noise_var = 0):
         Policy.__init__(self)
         
         self.agent = agent
         self.learning_rate = learning_rate
         self.mem_len = mem_len
-        if noise_var is not None:
-            self.sqrt_noise_var = np.sqrt(noise_var)
+        self.sqrt_noise_var = np.sqrt(noise_var)
         self.cond = cond    # cond, not m
         self.reset()
     

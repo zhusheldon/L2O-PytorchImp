@@ -4,13 +4,12 @@ from gps.algorithm.policy.policy import Policy
 from gps.proto.gps_pb2 import CUR_LOC
 
 class ConjugateGradientPolicy(Policy):
-    def __init__(self, agent, learning_rate, cond, noise_var = None):
+    def __init__(self, agent, learning_rate, cond, noise_var = 0):
         Policy.__init__(self)
         
         self.agent = agent
         self.learning_rate = learning_rate
-        if noise_var is not None:
-            self.sqrt_noise_var = np.sqrt(noise_var)
+        self.sqrt_noise_var = np.sqrt(noise_var)
         self.cond = cond    # cond, not m
         self.reset()
     
@@ -30,7 +29,7 @@ class ConjugateGradientPolicy(Policy):
         
         self.prev_dir = cur_dir
         self.prev_grad = grad
-        u = self.add_noise(u, noise, t)
+        # u = self.add_noise(u, noise, t)
         if noise is not None:
             u += self.sqrt_noise_var * noise
         return u

@@ -11,11 +11,13 @@ class GradientDescentPolicy(Policy):
         self.learning_rate = learning_rate
         if noise_var is not None:
             self.sqrt_noise_var = np.sqrt(noise_var)
+        else:
+            self.sqrt_noise_var = 0
         self.cond = cond    # cond, not m
     
     def act(self, x, obs, t, noise=None):
         
-        cur_loc = self.agent.unpack_data_x(x, data_types=[CUR_LOC], condition=self.cond)
+        cur_loc = self.agent.unpack_data_x(x, data_types=[CUR_LOC])#condition=cond)
         grad = self.agent.fcns[self.cond]['fcn_obj'].grad(cur_loc[:,None])[:,0]
         
         u = -self.learning_rate*grad
