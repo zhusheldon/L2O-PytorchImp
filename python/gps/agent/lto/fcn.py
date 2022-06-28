@@ -45,7 +45,7 @@ class FcnFamily(object):
         def construct_graph():
             if "graph_def" in self.options:
                 print('graph_def in options')
-                graph_def = tf.GraphDef()
+                graph_def = tf.compat.v1.GraphDef()
                 graph_def.ParseFromString(self.options["graph_def"])
                 del self.options["graph_def"]
                 self.session.graph.as_default()
@@ -81,21 +81,21 @@ class FcnFamily(object):
                 prefix = "%s_" % (self.options["tensor_prefix"]) if "tensor_prefix" in self.options else ""
                 
                 for param_name in self.param_defns:
-                    self.params[param_name] = tf.placeholder(self.param_defns[param_name]["type"], name="%sparam_%s" % (prefix,param_name))
+                    self.params[param_name] = tf.compat.v1.placeholder(self.param_defns[param_name]["type"], name="%sparam_%s" % (prefix,param_name))
                     self.is_param_subsampled[param_name] = "subsampled" in self.param_defns[param_name] and self.param_defns[param_name]["subsampled"]
                 
-                self.x_ = [tf.placeholder(tf.float64, name="%sx_%d" % (prefix,i)) for i in range(len(self.num_dims))] # A list of variable groups
+                self.x_ = [tf.compat.v1.placeholder(tf.float64, name="%sx_%d" % (prefix,i)) for i in range(len(self.num_dims))] # A list of variable groups
                 fcn = self.fcn_defns(self.x_, self.params)    # May return a tuple of functions - assume the first one is the main function which we will be differentiating
                 self.fcn_ = tf.identity(fcn, name="%sfcn" % (prefix))
-                self.grad_ = [tf.identity(cur_grad, name="%sgrad_%d" % (prefix,i)) for i,cur_grad in enumerate(tf.gradients(self.fcn_, self.x_))]   # A list of gradient expressions wrt each variable group, each of which is a vector
+                self.grad_ = [tf.identity(cur_grad, name="%sgrad_%d" % (prefix,i)) for i,cur_grad in enumerate(tf.gradients(ys=self.fcn_, xs=self.x_))]   # A list of gradient expressions wrt each variable group, each of which is a vector
                 
                 if ("disable_hess" not in self.options) or (not self.options["disable_hess"]):
                     self.hess_ = []
                     for i in range(len(self.num_dims)):     # Iterate over each variable group
                         # Each element is an individual row
-                        rows_of_block_cols = [tf.gradients(self.grad_[i][k,:], self.x_[:i+1]) for k in range(self.num_dims[i])]
+                        rows_of_block_cols = [tf.gradients(ys=self.grad_[i][k,:], xs=self.x_[:i+1]) for k in range(self.num_dims[i])]
                         # Each element is a block column
-                        block_cols_of_block_cells = [tf.transpose(tf.concat(1, [row[j] for row in rows_of_block_cols]), name="%shess_%d_%d" % (prefix,i,j)) for j in range(i+1)]
+                        block_cols_of_block_cells = [tf.transpose(a=tf.concat(1, [row[j] for row in rows_of_block_cols]), name="%shess_%d_%d" % (prefix,i,j)) for j in range(i+1)]
                         self.hess_.append(block_cols_of_block_cells)
                          
         if self.session is not None:
@@ -103,7 +103,7 @@ class FcnFamily(object):
                 print("Warning: start_session is called with a different session than the one in use. Will keep using existing session. ")
         else:
             if session is None:
-                self.session = tf.Session()
+                self.session = tf.compat.v1.Session()
             else:
                 self.session = session
             
@@ -179,7 +179,7 @@ class FcnFamily(object):
         if self.session is None:
             print("Warning: Session automatically started for the purposes of pickling. ")
             self.start_session()
-        tf.train.write_graph(self.session.graph_def, "/tmp", "tf_graph.pb", False) #proto
+        tf.io.write_graph(self.session.graph_def, "/tmp", "tf_graph.pb", False) #proto
         with open("/tmp/tf_graph.pb", "rb") as f:
             graph_def_str = f.read()
         os.remove("/tmp/tf_graph.pb")
@@ -284,7 +284,7 @@ class LogisticRegressionFcnFamily(FcnFamily):
             
             preds = tf.matmul(params["data"], weights) + bias     # N x 1 matrix, where N is the number of data points
             
-            loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(preds, params["labels"]))
+            loss = tf.reduce_mean(input_tensor=tf.nn.sigmoid_cross_entropy_with_logits(preds, params["labels"]))
             
             # L2 regularization for the fully connected parameters.
             regularizers = tf.nn.l2_loss(weights)
@@ -318,7 +318,7 @@ class LogisticRegressionWithoutBiasFcnFamily(FcnFamily):
             
             preds = tf.matmul(params["data"], weights)     # N x 1 matrix, where N is the number of data points
             
-            loss = tf.reduce_mean(tf.nn.sigmoid_cross_entropy_with_logits(preds, params["labels"]))
+            loss = tf.reduce_mean(input_tensor=tf.nn.sigmoid_cross_entropy_with_logits(preds, params["labels"]))
             
             # L2 regularization for the fully connected parameters.
             regularizers = tf.nn.l2_loss(weights)
@@ -357,7 +357,7 @@ class RobustRegressionFcnFamily(FcnFamily):
             preds = tf.matmul(params["data"], weights) + bias     # N x 1 matrix, where N is the number of data points
             err = params["labels"] - preds
             err_sq = tf.square(err)
-            loss = tf.reduce_mean(tf.truediv(err_sq, tf.add(err_sq, params["sigma_sq"])))
+            loss = tf.reduce_mean(input_tensor=tf.truediv(err_sq, tf.add(err_sq, params["sigma_sq"])))
             
             return loss
         
@@ -401,8 +401,8 @@ class NeuralNetFcnFamily(FcnFamily):
                 
             output = cur_layer
                         
-            loss = tf.reduce_mean(tf.nn.sparse_softmax_cross_entropy_with_logits(
-                output, params["labels"]))
+            loss = tf.reduce_mean(input_tensor=tf.nn.sparse_softmax_cross_entropy_with_logits(
+                logits=output, labels=params["labels"]))
             
             # L2 regularization for the fully connected parameters.
             regularizers = tf.nn.l2_loss(weights[0])
@@ -445,7 +445,7 @@ class NeuralNetFcn(Fcn):
         return np.vstack([np.hstack(block_row) for block_row in Fcn.hess(self, self.unpack_x(x))])
     
 def main(*args):
-    
+    tf.compat.v1.disable_eager_execution()
     family = QuadFormFcnFamily(2)
     fcn = QuadFormFcn(family, np.array([[2., 1.], [1., 2.]]))
     print(fcn.evaluate(np.array([[-1.],[2.]])))

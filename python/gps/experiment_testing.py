@@ -11,6 +11,7 @@ import numpy as np
 import random
 import pickle
 import matplotlib.pyplot as plt
+import tensorflow as tf
 
 # Add gps/python to path so that imports work.
 sys.path.append('/'.join(str.split(__file__, '/')[:-2]))
@@ -151,6 +152,7 @@ def append_output_text(filename, text):
         f.write(text + '\n')
 
 def main():
+    tf.compat.v1.disable_eager_execution()
     parser = argparse.ArgumentParser(description='Test the RL Agent.')
     parser.add_argument('experiment', type=str, help='experiment name')
     args = parser.parse_args()

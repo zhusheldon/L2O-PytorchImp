@@ -65,8 +65,8 @@ class TfPolicy(Policy):
                        'checkpoint_path_tf': checkpoint_path + '_tf_data.ckpt', 'scale': self.scale, 'bias': self.bias,
                        'device_string': self.device_string, 'goal_state': goal_state}
         pickle.dump(pickled_pol, open(checkpoint_path + '.pkl', "wb"))
-        saver = tf.train.Saver()
-        saver.save(self.sess, checkpoint_path + '_tf_data.ckpt')
+        saver = tf.compat.v1.train.Saver()
+        saver.save(self.sess, checkpoint_path + '_tf_data.ckpt', save_format='h5')
 
     @classmethod
     def load_policy(cls, policy_dict_path, tf_generator, network_config=None):
@@ -85,10 +85,10 @@ class TfPolicy(Policy):
         tf_map = tf_generator(dim_input=pol_dict['deg_obs'], dim_output=pol_dict['deg_action'],
                               batch_size=1, network_config=network_config)
 
-        sess = tf.Session()
-        init_op = tf.initialize_all_variables()
+        sess = tf.compat.v1.Session()
+        init_op = tf.compat.v1.initialize_all_variables()
         sess.run(init_op)
-        saver = tf.train.Saver()
+        saver = tf.compat.v1.train.Saver()
         check_file = '/'.join(str.split(policy_dict_path, '/')[:-1]) + '/' + str.split(pol_dict['checkpoint_path_tf'], '/')[-1]
         
         saver.restore(sess, check_file)

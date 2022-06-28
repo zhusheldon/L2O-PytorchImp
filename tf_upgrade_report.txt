@@ -1,0 +1,490 @@
+TensorFlow 2.0 Upgrade Script
+-----------------------------
+Converted 56 files
+Detected 1 issues that require attention
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+File: C:/Users/sheld/Documents/L2O-PytorchImp/python\gps\algorithm\policy\tf_policy.py
+--------------------------------------------------------------------------------
+C:/Users/sheld/Documents/L2O-PytorchImp/python\gps\algorithm\policy\tf_policy.py:69:8: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+================================================================================
+Detailed log follows:
+
+================================================================================
+================================================================================
+Input tree: 'C:/Users/sheld/Documents/L2O-PytorchImp/'
+================================================================================
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/better_abc.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/better_abc.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/fcn_v2.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/fcn_v2.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/ObjFcns.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/ObjFcns.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/experiments\\lto\\hyperparams.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/experiments\\lto\\hyperparams.py'
+--------------------------------------------------------------------------------
+
+63:10: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\experiment_testing.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\experiment_testing.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\gps_main.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\gps_main.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\agent.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\agent.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\lto\\agent_lto.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\lto\\agent_lto.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\lto\\fcn.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\lto\\fcn.py'
+--------------------------------------------------------------------------------
+
+48:28: INFO: Renamed 'tf.GraphDef' to 'tf.compat.v1.GraphDef'
+84:46: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+87:27: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+90:111: INFO: Added keywords to args of function 'tf.gradients'
+96:46: INFO: Added keywords to args of function 'tf.gradients'
+98:53: INFO: Added keywords to args of function 'tf.transpose'
+106:31: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+182:8: INFO: Renamed 'tf.train.write_graph' to 'tf.io.write_graph'
+287:19: INFO: Added keywords to args of function 'tf.reduce_mean'
+321:19: INFO: Added keywords to args of function 'tf.reduce_mean'
+360:19: INFO: Added keywords to args of function 'tf.reduce_mean'
+404:19: INFO: Added keywords to args of function 'tf.reduce_mean'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\lto\\lto_world.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\lto\\lto_world.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\agent\\lto\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\agent\\lto\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\algorithm.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\algorithm.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\algorithm_utils.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\algorithm_utils.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\cost\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\cost\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\cost\\cost.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\cost\\cost.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\cost\\cost_utils.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\cost\\cost_utils.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\cost\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\cost\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\dynamics\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\dynamics\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\dynamics\\dynamics_lr_prior.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\dynamics\\dynamics_lr_prior.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\dynamics\\dynamics_prior_gmm.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\dynamics\\dynamics_prior_gmm.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\dynamics\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\dynamics\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lin_gauss_init.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lin_gauss_init.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lin_gauss_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lin_gauss_policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\policy_prior_gmm.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\policy_prior_gmm.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\tf_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\tf_policy.py'
+--------------------------------------------------------------------------------
+
+68:16: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+69:8: WARNING: *.save requires manual check. (This warning is only applicable if the code saves a tf.Keras model) Keras model.save now saves to the Tensorflow SavedModel format by default, instead of HDF5. To continue saving to HDF5, add the argument save_format='h5' to the save() function.
+88:15: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+89:18: INFO: Renamed 'tf.initialize_all_variables' to 'tf.compat.v1.initialize_all_variables'
+91:16: INFO: Renamed 'tf.train.Saver' to 'tf.compat.v1.train.Saver'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lto\\cg_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lto\\cg_policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lto\\gd_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lto\\gd_policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lto\\lbfgs_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lto\\lbfgs_policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lto\\momentum_policy.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lto\\momentum_policy.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy\\lto\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy\\lto\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy_opt\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy_opt\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy_opt\\lto_model.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy_opt\\lto_model.py'
+--------------------------------------------------------------------------------
+
+6:23: INFO: Renamed 'tf.random_normal' to 'tf.random.normal'
+23:16: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+24:13: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+25:16: INFO: Renamed 'tf.placeholder' to 'tf.compat.v1.placeholder'
+32:10: INFO: Added keywords to args of function 'tf.reduce_sum'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy_opt\\policy_opt.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy_opt\\policy_opt.py'
+--------------------------------------------------------------------------------
+
+29:8: INFO: Renamed 'tf.set_random_seed' to 'tf.compat.v1.set_random_seed'
+46:20: INFO: Renamed 'tf.Session' to 'tf.compat.v1.Session'
+48:18: INFO: Renamed 'tf.initialize_all_variables' to 'tf.compat.v1.initialize_all_variables'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy_opt\\tf_utils.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy_opt\\tf_utils.py'
+--------------------------------------------------------------------------------
+
+75:29: INFO: Renamed 'tf.trainable_variables' to 'tf.compat.v1.trainable_variables'
+86:19: INFO: Renamed 'tf.train.AdamOptimizer' to 'tf.compat.v1.train.AdamOptimizer'
+88:19: INFO: Renamed 'tf.train.RMSPropOptimizer' to 'tf.compat.v1.train.RMSPropOptimizer'
+90:19: INFO: Renamed 'tf.train.MomentumOptimizer' to 'tf.compat.v1.train.MomentumOptimizer'
+92:19: INFO: Renamed 'tf.train.AdagradOptimizer' to 'tf.compat.v1.train.AdagradOptimizer'
+94:19: INFO: Renamed 'tf.train.GradientDescentOptimizer' to 'tf.compat.v1.train.GradientDescentOptimizer'
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\policy_opt\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\policy_opt\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\traj_opt\\config.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\traj_opt\\config.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\traj_opt\\traj_opt.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\traj_opt\\traj_opt.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\traj_opt\\traj_opt_utils.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\traj_opt\\traj_opt_utils.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\algorithm\\traj_opt\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\algorithm\\traj_opt\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\proto\\gps_pb2.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\proto\\gps_pb2.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\proto\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\proto\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\sample\\sample.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\sample\\sample.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\sample\\sample_list.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\sample\\sample_list.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\sample\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\sample\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\utility\\display.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\utility\\display.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\utility\\general_utils.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\utility\\general_utils.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\utility\\gmm.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\utility\\gmm.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------
+Processing file 'C:/Users/sheld/Documents/L2O-PytorchImp/python\\gps\\utility\\__init__.py'
+ outputting to 'C:/Users/sheld/Documents/L2O-PytorchImp_V2/python\\gps\\utility\\__init__.py'
+--------------------------------------------------------------------------------
+
+
+--------------------------------------------------------------------------------
+
