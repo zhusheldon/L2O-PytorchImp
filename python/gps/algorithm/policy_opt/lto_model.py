@@ -3,7 +3,7 @@ from gps.algorithm.policy_opt.tf_utils import TfMap
 import numpy as np
 
 def init_weights(shape, name=None):
-    return tf.Variable(tf.random_normal(shape, stddev=0.01), name=name)
+    return tf.Variable(tf.random.normal(shape, stddev=0.01), name=name)
 
 def init_bias(shape, name=None):
     return tf.Variable(tf.zeros(shape, dtype='float'), name=name)
@@ -11,7 +11,7 @@ def init_bias(shape, name=None):
 def batched_matrix_vector_multiply(vector, matrix):
     """ computes x^T A in mini-batches. """
     vector_batch_as_matricies = tf.expand_dims(vector, [1])
-    mult_result = tf.batch_matmul(vector_batch_as_matricies, matrix)
+    mult_result = tf.matmul(vector_batch_as_matricies, matrix)
     squeezed_result = tf.squeeze(mult_result, [1])
     return squeezed_result
 
@@ -20,16 +20,16 @@ def get_input_layer():
         net_input: usually an observation.
         action: mu, the ground truth actions we're trying to learn.
         precision: precision matrix used to compute loss."""
-    net_input = tf.placeholder("float", [None, None], name='nn_input')  # (N*T) x dO
-    action = tf.placeholder('float', [None, None], name='action')       # (N*T) x dU
-    precision = tf.placeholder('float', [None, None, None], name='precision') # (N*T) x dU x dU
+    net_input = tf.compat.v1.placeholder("float", [None, None], name='nn_input')  # (N*T) x dO
+    action = tf.compat.v1.placeholder('float', [None, None], name='action')       # (N*T) x dU
+    precision = tf.compat.v1.placeholder('float', [None, None, None], name='precision') # (N*T) x dU x dU
     return net_input, action, precision
 
 def get_loss_layer(mlp_out, action, precision, batch_size):
     """The loss layer used for the MLP network is obtained through this class."""
     scale_factor = tf.constant(2*batch_size, dtype='float')
     uP = batched_matrix_vector_multiply(action - mlp_out, precision)
-    uPu = tf.reduce_sum(uP*(action - mlp_out))  # this last dot product is then summed, so we just the sum all at once.
+    uPu = tf.reduce_sum(input_tensor=uP*(action - mlp_out))  # this last dot product is then summed, so we just the sum all at once.
     return uPu/scale_factor
 
 def fully_connected_tf_network(dim_input, dim_output, batch_size=25, network_config=None):

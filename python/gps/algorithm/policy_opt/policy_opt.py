@@ -26,7 +26,7 @@ class PolicyOpt(object):
         self._dO = dO
         self._dU = dU
         
-        tf.set_random_seed(self._hyperparams['random_seed'])
+        tf.compat.v1.set_random_seed(self._hyperparams['random_seed'])
         
         self.tf_iter = 0
         self.batch_size = self._hyperparams['batch_size']
@@ -43,9 +43,9 @@ class PolicyOpt(object):
         self.init_network()
         self.init_solver()
         self.var = self._hyperparams['init_var'] * np.ones(dU)
-        self.sess = tf.Session()
+        self.sess = tf.compat.v1.Session()
         self.policy = TfPolicy(dU, self.obs_tensor, self.act_op, np.zeros(dU), self.sess, self.device_string)
-        init_op = tf.initialize_all_variables()
+        init_op = tf.compat.v1.initialize_all_variables()
         self.sess.run(init_op)
 
     def init_network(self):

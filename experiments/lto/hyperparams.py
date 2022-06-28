@@ -60,7 +60,7 @@ def gen_fcns(input_dim, num_fcns, session, num_inits_per_fcn = 1, num_points_per
 def lto_on_exit(config):
     config['agent']['fcn_family'].destroy()
 
-session = tf.Session()
+session = tf.compat.v1.Session()
 history_len = 25
 
 num_fcns = 90
