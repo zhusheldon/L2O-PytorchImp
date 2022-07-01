@@ -1,4 +1,5 @@
 import tensorflow as tf
+import torch
 
 def check_list_and_convert(the_object):
     if isinstance(the_object, list):
@@ -72,10 +73,10 @@ class TfSolver:
 
         self.weight_decay = weight_decay
         if weight_decay is not None:
-            trainable_vars = tf.compat.v1.trainable_variables()
+            # trainable_vars = tf.compat.v1.trainable_variables()
             loss_with_reg = self.loss_scalar
-            for var in trainable_vars:
-                loss_with_reg += self.weight_decay*tf.nn.l2_loss(var)
+            # for var in trainable_vars:
+            #     loss_with_reg += self.weight_decay*tf.nn.l2_loss(var)
             self.loss_scalar = loss_with_reg
 
         self.solver_op = self.get_solver_op()
@@ -83,15 +84,16 @@ class TfSolver:
     def get_solver_op(self):
         solver_string = self.solver_name.lower()
         if solver_string == 'adam':
-            return tf.compat.v1.train.AdamOptimizer(learning_rate=self.base_lr,beta1=self.momentum,beta2=self.momentum2,epsilon=self.epsilon).minimize(self.loss_scalar)
+            
+            return tf.keras.optimizers.Adam(learning_rate=self.base_lr,beta1=self.momentum,beta2=self.momentum2,epsilon=self.epsilon).minimize(self.loss_scalar)
         elif solver_string == 'rmsprop':
-            return tf.compat.v1.train.RMSPropOptimizer(learning_rate=self.base_lr,decay=self.momentum).minimize(self.loss_scalar)
+            return tf.keras.optimizers.RMSprop(learning_rate=self.base_lr,decay=self.momentum).minimize(self.loss_scalar)
         elif solver_string == 'momentum':
-            return tf.compat.v1.train.MomentumOptimizer(learning_rate=self.base_lr,momentum=self.momentum).minimize(self.loss_scalar)
+            return tf.keras.optimizers.SGD(learning_rate=self.base_lr,momentum=self.momentum).minimize(self.loss_scalar)
         elif solver_string == 'adagrad':
-            return tf.compat.v1.train.AdagradOptimizer(learning_rate=self.base_lr,initial_accumulator_value=self.momentum).minimize(self.loss_scalar)
+            return tf.keras.optimizers.Adagrad(learning_rate=self.base_lr,initial_accumulator_value=self.momentum).minimize(self.loss_scalar)
         elif solver_string == 'sgd':
-            return tf.compat.v1.train.GradientDescentOptimizer(learning_rate=self.base_lr).minimize(self.loss_scalar)
+            return tf.keras.optimizers.SGD(learning_rate=self.base_lr).minimize(self.loss_scalar)
         else:
             raise NotImplementedError("Please select a valid optimizer.")
 

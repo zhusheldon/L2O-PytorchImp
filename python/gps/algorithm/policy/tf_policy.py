@@ -20,12 +20,12 @@ class TfPolicy(Policy):
         sess: tf session.
         device_string: tf device string for running on either gpu or cpu.
     """
-    def __init__(self, dU, obs_tensor, act_op, var, sess, device_string):
+    def __init__(self, dU, obs_tensor, act_op, var, device_string):
         Policy.__init__(self)
         self.dU = dU
         self.obs_tensor = obs_tensor
         self.act_op = act_op
-        self.sess = sess
+        # self.sess = sess
         self.device_string = device_string
         self.chol_pol_covar = np.diag(np.sqrt(var))
         self.scale = None  # must be set from elsewhere based on observations

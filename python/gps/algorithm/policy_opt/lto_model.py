@@ -20,9 +20,9 @@ def get_input_layer():
         net_input: usually an observation.
         action: mu, the ground truth actions we're trying to learn.
         precision: precision matrix used to compute loss."""
-    net_input = tf.compat.v1.placeholder("float", [None, None], name='nn_input')  # (N*T) x dO
-    action = tf.compat.v1.placeholder('float', [None, None], name='action')       # (N*T) x dU
-    precision = tf.compat.v1.placeholder('float', [None, None, None], name='precision') # (N*T) x dU x dU
+    net_input = tf.keras.Input(dtype=tf.float32, shape=(None, None), name='nn_input')  # (N*T) x dO
+    action = tf.keras.Input(dtype=tf.float32, shape=(None, None), name='action')       # (N*T) x dU
+    precision = tf.keras.Input(dtype=tf.float32, shape=(None, None, None), name='precision') # (N*T) x dU x dU
     return net_input, action, precision
 
 def get_loss_layer(mlp_out, action, precision, batch_size):

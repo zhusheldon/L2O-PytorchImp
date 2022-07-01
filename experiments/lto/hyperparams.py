@@ -27,7 +27,7 @@ except:
    import pickle
 import copy
 
-def gen_fcns(input_dim, num_fcns, session, num_inits_per_fcn = 1, num_points_per_class = 50):
+def gen_fcns(input_dim, num_fcns, session=None, num_inits_per_fcn = 1, num_points_per_class = 50):
 
     fcn_family = LogisticRegressionFcnFamily(input_dim, gpu_id = 0, session = session, tensor_prefix = "logistic_reg")
     
@@ -60,7 +60,7 @@ def gen_fcns(input_dim, num_fcns, session, num_inits_per_fcn = 1, num_points_per
 def lto_on_exit(config):
     config['agent']['fcn_family'].destroy()
 
-session = tf.compat.v1.Session()
+# session = tf.compat.v1.Session()
 history_len = 25
 
 num_fcns = 90
@@ -75,24 +75,24 @@ if os.path.isfile(dataset_train_file):
     print("Dataset already exists. Loading from %s. " % (dataset_train_file))
     with open(dataset_train_file, "rb") as f:
         fcns,fcn_family = pickle.load(f)
-    fcn_family.start_session(session)
+    fcn_family.start_session()
 else:
     print("Generating new dataset.")
-    fcns,fcn_family = gen_fcns(input_dim, num_fcns, session)
+    fcns,fcn_family = gen_fcns(input_dim, num_fcns, )
     with open(dataset_train_file, "wb") as f:
         pickle.dump((fcns,fcn_family), f)
     print("Saved to %s. " % (dataset_train_file))
     
     
-testnum_fcns = 100
+testnum_fcns = 10
 if os.path.isfile(dataset_test_file):
     print("Dataset already exists. Loading from %s. " % (dataset_test_file))
     with open(dataset_test_file, "rb") as f:
         testfcns,testfcn_family = pickle.load(f)
-    testfcn_family.start_session(session)
+    testfcn_family.start_session()
 else:
     print("Generating new dataset.")
-    testfcns,testfcn_family = gen_fcns(input_dim, testnum_fcns, session)
+    testfcns,testfcn_family = gen_fcns(input_dim, testnum_fcns)
     with open(dataset_test_file, "wb") as f:
         pickle.dump((testfcns,testfcn_family), f)
     print("Saved to %s. " % (dataset_test_file))

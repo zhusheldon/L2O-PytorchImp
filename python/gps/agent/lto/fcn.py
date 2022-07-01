@@ -2,7 +2,7 @@ import sys
 import os
 import numpy as np
 import tensorflow as tf
-import pickle as pickle
+import pickle
 from time import time
 
 def printWithoutNewline(s):
@@ -81,12 +81,13 @@ class FcnFamily(object):
                 prefix = "%s_" % (self.options["tensor_prefix"]) if "tensor_prefix" in self.options else ""
                 
                 for param_name in self.param_defns:
-                    self.params[param_name] = tf.compat.v1.placeholder(self.param_defns[param_name]["type"], name="%sparam_%s" % (prefix,param_name))
+                    self.params[param_name] =tf.compat.v1.placeholder(dtype=self.param_defns[param_name]["type"], name="%sparam_%s" % (prefix,param_name))
                     self.is_param_subsampled[param_name] = "subsampled" in self.param_defns[param_name] and self.param_defns[param_name]["subsampled"]
                 
-                self.x_ = [tf.compat.v1.placeholder(tf.float64, name="%sx_%d" % (prefix,i)) for i in range(len(self.num_dims))] # A list of variable groups
+                self.x_ = [tf.compat.v1.placeholder(dtype=tf.float64, name="%sx_%d" % (prefix,i)) for i in range(len(self.num_dims))] # A list of variable groups
                 fcn = self.fcn_defns(self.x_, self.params)    # May return a tuple of functions - assume the first one is the main function which we will be differentiating
                 self.fcn_ = tf.identity(fcn, name="%sfcn" % (prefix))
+                
                 self.grad_ = [tf.identity(cur_grad, name="%sgrad_%d" % (prefix,i)) for i,cur_grad in enumerate(tf.gradients(ys=self.fcn_, xs=self.x_))]   # A list of gradient expressions wrt each variable group, each of which is a vector
                 
                 if ("disable_hess" not in self.options) or (not self.options["disable_hess"]):
@@ -205,7 +206,7 @@ class FcnFamily(object):
         self.__init__(**kwargs)
   
 class Fcn(object):
-    
+
     # If disable_subsampling is set to True, will never subsample regardless of what batch_size is set to be, either in the constructor or in Fcn.new_sample()
     def __init__(self, family, param_vals, batch_size = "all", disable_subsampling = False):
         self.family = family
@@ -448,11 +449,13 @@ def main(*args):
     tf.compat.v1.disable_eager_execution()
     family = QuadFormFcnFamily(2)
     fcn = QuadFormFcn(family, np.array([[2., 1.], [1., 2.]]))
-    print(fcn.evaluate(np.array([[-1.],[2.]])))
-    print(fcn.grad(np.array([[-1.],[2.]])))
-    print(fcn.hess(np.array([[-1.],[2.]])))
+    assert fcn.evaluate(np.array([[-1.],[2.]]))==np.array([[6.]])
+    assert np.array_equal(fcn.grad(np.array([[-1.],[2.]])), np.array([[0.], [6.]]))
+    assert fcn.grad(np.array([[-1.],[2.]])).size==2
+    # print(fcn.hess(np.array([[-1.],[2.]])).size)
     family.destroy()
     
+    np.random.seed(0)
     input_dim = 5
     hidden_dim = [5]
     output_dim = 5
@@ -467,8 +470,8 @@ def main(*args):
     biases2 = np.random.randn(output_dim,1)
     x = np.vstack((weights1,biases1,weights2,biases2))
     print("Dimensionality: %d" % (x.shape[0]))
-    print(fcn.evaluate(x))
-    print(fcn.grad(x))
+    print("Obj. Value: ", fcn.evaluate(x))
+    assert fcn.grad(x).size == (input_dim*hidden_dim[0]+hidden_dim[0]+hidden_dim[0]*output_dim+output_dim)
     
     family.destroy()
     

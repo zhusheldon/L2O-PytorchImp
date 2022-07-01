@@ -2,7 +2,7 @@
 # Difference from gps_main.py: Uses a workaround to save Tensorflow policy. 
 
 import logging
-import imp
+import importlib
 import os
 import os.path
 import sys
@@ -12,7 +12,7 @@ import numpy as np
 import random
 
 # Add gps/python to path so that imports work.
-sys.path.append('/'.join(str.split(__file__, '/')[:-2]))
+sys.path.append('/'.join(str.split(__file__, '/')[:-2])) #forward slash may need to be replaced with backslash
 import gps as gps_globals
 from gps.utility.display import Display
 from gps.sample.sample_list import SampleList
@@ -112,7 +112,8 @@ def main():
     
     # May be used by hyperparams.py to load different conditions
     gps_globals.phase = "TRAIN"
-    hyperparams = imp.load_source('hyperparams', hyperparams_file)
+    loader = importlib.machinery.SourceFileLoader('hyperparams', hyperparams_file)
+    hyperparams = loader.load_module()
     print(hyperparams)
     seed = hyperparams.config.get('random_seed', 0)
     random.seed(seed)
